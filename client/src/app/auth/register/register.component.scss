@@ -1,0 +1,103 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  .registerForm {
+    width: 40rem;
+    background-color: white;
+
+    position: relative;
+
+    padding: 1rem;
+    border-radius: 15px;
+    .image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      img {
+        border: 2px solid black;
+        border-radius: 50%;
+        outline: 2px solid black;
+        outline-offset: 2px;
+        width: 130px;
+        height: 130px;
+        background-color: #3f51b5;
+      }
+      h4 {
+        text-align: center;
+        font-weight: 700px;
+        font-size: 18px;
+      }
+    }
+    form {
+      padding: 1rem;
+      .name {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+      }
+      .action {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+    }
+  }
+}
+.example-form {
+  //   min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.mdc-button {
+  height: 52px;
+  width: 100%;
+  font-size: 18px;
+}
+.disableButton {
+  background-color: #7f8ddd;
+  cursor: none;
+}
+.spinner {
+  font-size: 18px;
+}
+@media screen and (max-width: 550px) {
+  .container {
+    padding-top: 0;
+    .registerForm {
+      width: 100%;
+      box-shadow: none;
+      position: relative;
+      top: 6rem;
+      .image {
+        display: flex;
+        flex-direction: column;
+      }
+      form {
+        padding: 1rem;
+        .name {
+          display: flex;
+          flex-direction: column;
+        }
+        .action {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
+::ng-deep {
+  .swal2-backdrop-show {
+    background-color: rgba(127, 141, 221, 0.2) !important ;
+  }
+}

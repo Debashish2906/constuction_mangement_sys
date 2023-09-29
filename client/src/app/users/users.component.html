@@ -1,0 +1,24 @@
+
+<div>
+<table>
+    <caption style="color: rgb(110, 109, 109); font-size: 20px; font-weight: 600;margin-bottom: 2rem;">User's Details</caption>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>CreatedAt</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let data of user">
+        <tr>
+            <td>{{data.name}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.phone}}</td>
+            <td>{{data.role}}</td>
+            <td>{{data.createdAt|date}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,115 @@
+
+<main class="container">
+   
+    <div class="taskForm">
+      <!-- <div style="float: right;display: inline;padding-right: 0rem;"  (click)="closeDialog()"><mat-icon>close</mat-icon></div> -->
+      <div class="image">
+        <!-- <img src="../../../assets/registerlogo.png" alt="Login Logo" /> -->
+        <h2>Add Task!</h2>
+      </div>
+     
+      <form [formGroup]="taskForm" (submit)="createTask($event)">
+  
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Enter Username"
+            formControlName="name"
+          />
+          <!-- <mat-icon matSuffix >account_circle</mat-icon> -->
+          <mat-hint *ngIf="usernameMessage!==''" style="color:#e70909" >{{usernameMessage}}</mat-hint>
+          <mat-error *ngIf="taskForm.get('name')?.hasError('required')&& (taskForm.get('name')?.touched||taskForm.get('name')?.dirty)"
+            >This field is Required</mat-error
+          >
+          <mat-error *ngIf="taskForm.get('name')?.hasError('minLength')&& (taskForm.get('name')?.touched||taskForm.get('name')?.dirty)"
+          >Username should be greater than 6 characters.</mat-error
+        >
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Place</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Enter place"
+              formControlName="place"
+            />
+            <!-- <mat-icon matSuffix >remove_red_eye</mat-icon> -->
+            <mat-error *ngIf="taskForm.get('place')?.hasError('required')&& (taskForm.get('place')?.touched||taskForm.get('place')?.dirty)"
+              >This field is required.</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Price</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Enter place"
+              formControlName="price"
+              
+            />
+            
+            <!-- <mat-icon matPrefix >remove_red_eye</mat-icon> -->
+            <mat-error *ngIf="taskForm.get('price')?.hasError('required')&& (taskForm.get('price')?.touched||taskForm.get('price')?.dirty)"
+              >This field is required.</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate formControlName="startD" placeholder="Start date">
+              <input matEndDate formControlName="endD" placeholder="End date">
+            </mat-date-range-input>
+            <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          
+            <!-- <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+            <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error> -->
+          </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Description</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Enter description"
+            formControlName="desc"
+          />
+          <!-- <mat-icon matSuffix >remove_red_eye</mat-icon> -->
+          <mat-error *ngIf="taskForm.get('desc')?.hasError('required')&& (taskForm.get('desc')?.touched||taskForm.get('desc')?.dirty)"
+            >This field is required.</mat-error
+          >
+        </mat-form-field>
+         <div class="inputfile">
+            <label for="fileupload" class=" file"><span *ngIf="!isUploading">Upload Image</span><span *ngIf="isUploading"><mat-spinner  diameter="27"></mat-spinner></span></label>
+            <input id="fileupload" type="file" hidden (change)="onFileSelected($event)" >
+          </div>
+       
+        <div class="action">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="taskForm.invalid"
+          >
+            Add Task
+          </button>
+          
+        </div>
+      </form>
+      
+    </div>
+  </main>
+  <!-- <ngx-ui-loader></ngx-ui-loader> -->
+  <!-- <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="!taskForm.valid"
+            [ngClass]="{ disableButton: taskForm.valid }"
+          >
+            Add Task
+          </button> -->

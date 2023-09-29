@@ -1,0 +1,21 @@
+<ngx-ui-loader></ngx-ui-loader>
+<div class="card_container" >
+    <mat-card class="example-card" style="padding: 1rem;" *ngFor="let data of task">
+        
+        <img class="img" mat-card-image [src]="data.images" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <p ><span style="color: rgb(142, 140, 140); font-weight: 400;" >Name :</span><span style="font-weight: 400;" >{{data.name}}</span> </p>
+            <p ><span style="color: rgb(142, 140, 140); font-weight: 400;" >Start Date :</span><span style="font-weight: 400;" >{{data.startD|date}}</span> </p>
+            <p ><span style="color: rgb(142, 140, 140); font-weight: 400;" >End Date :</span><span style="font-weight: 400;" >{{data.endD|date}}</span> </p>
+            <p ><span style="color: rgb(142, 140, 140); font-weight: 400;" >Total Days :</span><span style="font-weight: 400;" >{{getTotalDays(data.startD,data.endD)}} days</span> </p>
+            <p ><span style="color: rgb(142, 140, 140); font-weight: 400;" >Remaining Days :</span><span style="font-weight: 400;" ><span *ngIf="!isOver(data.endD)" >{{getRemainingDays(data.endD)}}</span> <span style="color: red;" *ngIf="isOver(data.endD)">Due Date is Over</span></span> </p>
+            <p ><span style="color: rgb(160, 159, 159); font-weight: 400;" >Price :</span><span style="font-weight: 400;" >{{data.price|currency:'INR'}}</span> </p>
+            <p ><span style="color: rgb(160, 159, 159); font-weight: 400;" >Place :</span><span style="font-weight: 400;" >{{data.place}}</span> </p>
+            <p ><span style="color: rgb(160, 159, 159); font-weight: 400;" >{{data.desc.substring(0,40)}}...</span> </p>
+        </mat-card-content>
+        <mat-card-actions *ngIf="role==='pmanager'">
+            <mat-icon style="color: blue;font-size:27px;" (click)="edit(data._id)">edit</mat-icon>&nbsp;&nbsp;&nbsp;
+            <mat-icon style="color: red;font-size:27px;" (click)="delete(data._id)" >delete</mat-icon>     
+           </mat-card-actions>
+      </mat-card>
+</div>

@@ -1,0 +1,117 @@
+<main class="container">
+  <div class="registerForm">
+    <div style="float: right;display: inline;padding-right: 0rem;"  (click)="closeDialog()"><mat-icon>close</mat-icon></div>
+    <div class="image">
+      <img src="../../../assets/registerlogo.png" alt="Register Logo" />
+      <h4>Register here !!</h4>
+    </div>
+   
+    <form [formGroup]="registerForm" (submit)="register($event)">
+      <div class="name">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Enter first name"
+            formControlName="fname"
+          />
+         
+          <mat-error *ngIf="registerForm.get('fname')?.hasError('required')&& (registerForm.get('fname')?.touched||registerForm.get('fname')?.dirty)"
+            >This field is Required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Enter last name "
+            formControlName="lname"
+          />
+          <mat-error *ngIf="registerForm.get('lname')?.hasError('required')&& (registerForm.get('lname')?.touched||registerForm.get('lname')?.dirty)"
+            >This field is Required</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          matInput
+          placeholder="Enter email"
+          formControlName="email"
+        />
+        <mat-icon matSuffix > mail_outline</mat-icon>
+        <mat-error *ngIf="registerForm.get('email')?.hasError('required')&& (registerForm.get('email')?.touched||registerForm.get('email')?.dirty)"
+          >This field is Required</mat-error
+        >
+        <mat-error *ngIf="registerForm.get('email')?.hasError('email')&& (registerForm.get('email')?.touched||registerForm.get('email')?.dirty)"
+          >Invalid email.</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width"  appearance="outline">
+        <mat-label>Choose Role</mat-label>
+        <mat-select formControlName="role" >
+         <mat-option value="pmanager" >Project Manager</mat-option>
+         <mat-option value="contractor" >Contractor</mat-option>
+         <mat-option value="supervisor" >Supervisor</mat-option>
+        </mat-select>
+      </mat-form-field>
+       
+     
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Mobile Number</mat-label>
+        <input
+          type="tel"
+          matInput
+          placeholder="Enter mobile Number"
+          formControlName="phone"
+        />
+        <mat-icon matSuffix > phone</mat-icon>
+        <mat-error *ngIf="registerForm.get('phone')?.hasError('required')&& (registerForm.get('phone')?.touched||registerForm.get('phone')?.dirty)"
+          >This field is Required</mat-error
+        >
+        <mat-error *ngIf="registerForm.get('phone')?.hasError('pattern')&& (registerForm.get('phone')?.touched||registerForm.get('phone')?.dirty)"
+          >Invalid phone number.</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          [type]="type"
+          matInput
+          placeholder="Enter password"
+          formControlName="password"
+        />
+        <mat-icon matSuffix (click)="changeType()" >remove_red_eye</mat-icon>
+        <!-- <svg matSuffix xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg> -->
+        
+        <mat-error *ngIf="registerForm.get('password')?.hasError('required')&& (registerForm.get('password')?.touched||registerForm.get('password')?.dirty)"
+          >Invalid email.</mat-error
+        >
+      </mat-form-field>
+      <div class="action">
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="!registerForm.valid"
+          [ngClass]="{ disableButton: registerForm.valid }"
+        >
+          Register
+        </button>
+        <button mat-stroked-button color="accent" (click)="reset($event)">
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
+<ngx-ui-loader></ngx-ui-loader>

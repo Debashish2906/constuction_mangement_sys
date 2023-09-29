@@ -1,0 +1,60 @@
+<main class="container">
+   
+    <div class="loginForm">
+      <div style="float: right;display: inline;padding-right: 0rem;"  (click)="closeDialog()"><mat-icon>close</mat-icon></div>
+      <div class="image">
+        <img src="../../../assets/registerlogo.png" alt="Login Logo" />
+        <h4>Login here !!</h4>
+      </div>
+     
+      <form [formGroup]="loginForm" (submit)="login($event)">
+  
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input
+            type="email"
+            matInput
+            placeholder="Enter email"
+            formControlName="email"
+          />
+          <mat-icon matSuffix >account_circle</mat-icon>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')&& (loginForm.get('email')?.touched||loginForm.get('email')?.dirty)"
+            >This field is Required</mat-error
+          >
+          <mat-error *ngIf="loginForm.get('email')?.hasError('minLength')&& (loginForm.get('email')?.touched||loginForm.get('email')?.dirty)"
+          >email should be greater than 6 characters.</mat-error
+        >
+        </mat-form-field>
+  
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            [type]="type"
+            matInput
+            placeholder="Enter password"
+            formControlName="password"
+          />
+          <mat-icon matSuffix (click)="changeType()" >remove_red_eye</mat-icon>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')&& (loginForm.get('password')?.touched||loginForm.get('password')?.dirty)"
+            >Invalid email.</mat-error
+          >
+        </mat-form-field>
+        <p class="fpassword">Forgot Password?</p>
+        <div class="action">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="!loginForm.valid"
+            [ngClass]="{ disableButton: loginForm.valid }"
+          >
+            Login
+          </button>
+          <p class="singup" >Have not account yet? <span (click)="openDialog('register')">Singup </span></p>
+         
+        </div>
+      </form>
+    </div>
+  </main>
+  <ngx-ui-loader></ngx-ui-loader>
+  
